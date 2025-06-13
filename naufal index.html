@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hai Arya 💌</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background-color: #c0c0c0;
+      text-align: center;
+      padding: 50px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #ffc7d9;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ccc7c9;
+    }
+    .gombal {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #e29fc1;
+      min-height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Halo Arya.. 😳</h1>
+  <p>I have something who could you feel better!</p>
+  <button onclick="tampilGombalan()">Klik sini ya 💕</button>
+  <div class="gombal" id="gombalBox"></div>
+
+ <script>
+  const gombalan = [
+    "You looked.. interesting💖",
+    "Not in the way movies describe love at first sight",
+    "Loving someone who'll never even look in my direction that way 😳",
+    "Sometimes I tell myself to stop",
+    "To let it go",
+    "But I never really do",
+    "Because a part of me always hope.. ",
+    "What if?",
+    "What if one day, you'll see me the way I see you?",
+    "What if we get that one moment-",
+    "Just one",
+    "Where the world aligns for us?",
+    "I imagine us laughing",
+    "Talking for hours",
+    "Existing in a quiet kind of love that doesn't need to be loud",
+    "To be REAL",
+    "Because...",
+    "Loving you in the only way I know",
+    "With everything I have",
+    "And nothing I expect"
+  ];
+
+  let index = 0;
+
+  function tampilGombalan() {
+    if (index < gombalan.length) {
+      document.getElementById("gombalBox").innerText = gombalan[index];
+      index++;
+    } else {
+      document.getElementById("gombalBox").innerText = "I have crush on you since 10th february💌";
+    }
+  }
+</script>
