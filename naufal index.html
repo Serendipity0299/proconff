@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: 'Comic Sans MS', sans-serif;
-      background-color: #c0c0c0;
+      background-color: #fdf4fb;
       text-align: center;
       padding: 50px;
     }
@@ -26,24 +26,93 @@
     .gombal {
       margin-top: 30px;
       font-size: 24px;
-      color: #e29fc1;
+      color: #ca3e84;
       min-height: 40px;
     }
+      #paparazzi {
+    background-color: #f7e1ec;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 20px;
+    display: none;
+    color: black;
+  }
+
+  .paparazzi-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .paparazzi-container div {
+    text-align: center;
+  }
+
+  .bulat {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffaad7;
+  }
+.fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
   </style>
 </head>
 <body>
-  <h1>Halo Arya.. 😳</h1>
-  <p>I have something who could you feel better!</p>
-  <button onclick="tampilGombalan()">Klik sini ya 💕</button>
-  <div class="gombal" id="gombalBox"></div>
+  <!-- Frame 1 -->
+  <div id="frame1" class="fade show">
+    <h1>Halo Arya.. 😳</h1>
+    <p>I have something who could you feel better!</p>
+    <img src="naufal.jpg.png" class="bulat" alt="arya's dump">
+    <div class="gombal" id="gombalBox"></div>
+    <button onclick="tampilGombalan()">Klik sini ya 💕</button>
+  </div>
 
- <script>
+  <!-- Frame 2 -->
+  <div id="frame2" class="fade" style="display:none;">
+    <p>I think it's too much.. but kamu mau tau ga seberapa gantengnya kamu?</p>
+    <button onclick="tampilkanFoto()">mau dong</button>
+    <button onclick="tampilkanFoto()">mau bangett</button>
+  </div>
+
+  <!-- Frame 3 -->
+  <div id="frame3" class="fade" style="display:none;">
+    <div class="paparazzi-container">
+      <div>
+        <img src="metstat.jpg.jpeg" class="bulat">
+        <p>how can someone can be cute and cool at the same time? tutor dong kak</p>
+      </div>
+      <div>
+        <img src="iot.jpg.jpeg" class="bulat">
+        <p>mau kenalan juga dong kak</p>
+      </div>
+      <div>
+        <img src="tidur.jpg.jpeg" class="bulat">
+        <p>CUTE CUTE CUTE, JOMBLO GA SI NI ORANG?</p>
+      </div>
+    </div>
+    <p>udah deh segitu dulu yaa</p>
+    <button onclick="lanjutGombalan()">Okeey</button>
+    <button onclick="lanjutGombalan()">Okey dindaa</button>
+  </div>
+</body>
+<script>
   const gombalan = [
     "You looked.. interesting💖",
     "Not in the way movies describe love at first sight",
-    "Loving someone who'll never even look in my direction that way 😳",
+    "Suka sendirian sama orang",
     "Sometimes I tell myself to stop",
-    "To let it go",
+    "Stop kecintaan sendirian hehe",
     "But I never really do",
     "Because a part of me always hope.. ",
     "What if?",
@@ -51,7 +120,7 @@
     "What if we get that one moment-",
     "Just one",
     "Where the world aligns for us?",
-    "I imagine us laughing",
+    "Ketawa bareng",
     "Talking for hours",
     "Existing in a quiet kind of love that doesn't need to be loud",
     "To be REAL",
@@ -62,13 +131,50 @@
   ];
 
   let index = 0;
+  let berhentiSebentar = false;
 
-  function tampilGombalan() {
-    if (index < gombalan.length) {
-      document.getElementById("gombalBox").innerText = gombalan[index];
-      index++;
-    } else {
-      document.getElementById("gombalBox").innerText = "I have crush on you since 10th february💌";
-    }
+ function switchFrame(fromId, toId) {
+  const from = document.getElementById(fromId);
+  const to = document.getElementById(toId);
+
+  from.classList.remove("show");
+  setTimeout(() => {
+    from.style.display = "none";
+    to.style.display = "block";
+    // Delay sedikit supaya fade bisa jalan
+    setTimeout(() => {
+      to.classList.add("show");
+    }, 10);
+  }, 800); // waktu fade out
+}
+
+function tampilGombalan() {
+  if (berhentiSebentar) return;
+
+  if (index === 2) {
+    document.getElementById("gombalBox").innerText = gombalan[index];
+    switchFrame("frame1", "frame2");
+    berhentiSebentar = true;
+    index++;
+    return;
   }
+
+  if (index < gombalan.length) {
+    document.getElementById("gombalBox").innerText = gombalan[index];
+    index++;
+  } else {
+    document.getElementById("gombalBox").innerText = "I have crush on you since 10th february💌";
+  }
+}
+
+function tampilkanFoto() {
+  switchFrame("frame2", "frame3");
+}
+
+function lanjutGombalan() {
+  switchFrame("frame3", "frame1");
+  berhentiSebentar = false;
+  tampilGombalan();
+}
+
 </script>
